@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="results">
+
+    </div>
+
+</body>
+<script>
+    let result = document.getElementById("results");
+    const endpoint = "http://127.0.0.1:5000/endpoint/";
+    let myHeaders = new Headers();
+    myHeaders.append('Accept', 'application/json');
+    fetch(endpoint, { method: "GET", mode: 'cors', headers: myHeaders })
+        .then((response) => {
+            // console.log(response);
+            if (response.ok) {
+                // console.log('response status: ' + response.status);
+                console.log('response na ok ', response);
+                return response.text();
+            } else {
+                throw Error(`Server returned ${response.status}: ${response.statusText}`)
+            }
+        })
+        .then((data) => {
+            // let data =  response.success;
+            // console.log('response: ' + response.status );
+            console.log('data:' + data);
+            let jsondata = JSON.parse(data);
+            console.log('json:' + jsondata);
+            jsondata.forEach(element => {
+                let ul = document.createElement("ul");
+                let li_n = document.createElement("li");
+                let li_a = document.createElement("li");
+                let li_w = document.createElement("li");
+
+                li_n.textContent = element.name;
+                ul.appendChild(li_n);
+                li_a.textContent = element.age;
+                ul.appendChild(li_a);
+                li_w.textContent = element.mood;
+                ul.appendChild(li_w);
+                result.appendChild(ul);
+            });  
+
+
+            // Dangerous?  https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Safely_inserting_external_content_into_a_page
+            // result.innerHTML+= '<ul>';
+
+            // result.innerHTML = '<h1>Huh</h1>';
+            // result.innerHTML += '<ol>';
+            // jsondata.forEach(element => {
+            //     result.innerHTML+= '<ul>';
+            //     result.innerHTML += '<li>' + element.name + '</li>';
+            //     result.innerHTML += '<li>' + element.age + '</li>';
+            //     result.innerHTML += '<li>' + element.mood + '</li>';
+
+            //     console.log(element.nameelemen);
+            //     console.log(element.age);
+            //     console.log(element.mood);
+            //     result.innerHTML += '</ul>';
+
+            // });
+            // result.innerHTML += '</ol>';
+
+
+        })
+        .catch(err => {
+            alert(err);
+        });
+
+</script>
+
+</html>
