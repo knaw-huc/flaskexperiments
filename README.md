@@ -25,9 +25,9 @@ http://127.0.0.1:5000/endpoint/
 
 Test with: test.html
 
-## Offensive greeting
+## Friendly greeting
 
-http://127.0.0.1:5000/<name>
+http://127.0.0.1:5000/PLACEHOLDER_FOR_YOUR_NAME
 
 
 
