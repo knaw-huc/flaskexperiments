@@ -1,0 +1,10 @@
+version: '2'
+services: 
+  
+  flaskwebservice:
+    build: 
+      context: .
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/usr/src/app
