@@ -4,9 +4,11 @@ At least needed for eCodices. Minimal examples, cors, jinja, links, tutorials
 
 ## Up and runnning
 
+Prerequisite: latest Docker
+
+After cloning to your machine
 
 ```
-git clone git@github.com:knaw-huc/flaskexperiments.git
 cd flaskexperiments
 docker-compose up -d
 
