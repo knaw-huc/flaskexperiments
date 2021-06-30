@@ -10,11 +10,23 @@
 </head>
 <body>
     <h1>Create audio question for LimeSurvey</h1>
-    <form method="post" action="{{ url_for('subsmith') }}" >
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+     
+      {% for message in messages %}
+        <h3 class="alert">{{ message }}</h3>
+      {% endfor %}
+      
+    {% endif %}
+  {% endwith %}
+
+    <form method="post" action="{{ url_for('submit') }}" >
         id      <input type="text" name="id"><p></p>
         phrases <input type="text" name="words">
 
         <input type="submit">
     </form>
+    <p>Separate them with commas</p>
 </body>
 </html>

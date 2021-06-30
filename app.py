@@ -10,6 +10,8 @@ app = Flask(__name__)
 CORS(app)
 
 app.config['UPLOAD_FOLDER'] = './static/uploads/'
+app.secret_key = 'secreet'
+app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 # max: 1MB, 10s ogg = 125MB, mp4 = 233MB, webm = 48MB
 
 
 @app.route('/')
@@ -30,8 +32,13 @@ def endpoint():
     returnvalues = [{"storestatus" : status}, {"mp4conv" : {"bashcmd" : bashcmd, "return" : returnvalue}}]
     return json.dumps(returnvalues)
 
-@app.route('/subsmith/', methods = ['POST', 'GET']) # start slash and end slash essential
-def subsmith():
+@app.route('/createquestion/')
+def createquestion():
+    return render_template("audioquestion.html", a=1)
+
+
+@app.route('/submit/', methods = ['POST', 'GET']) # start slash and end slash essential
+def submit():
     id = None
     dictOfWords = []
     if request.method == 'POST' and 'id' in request.form:
@@ -56,10 +63,14 @@ def subsmith():
 
     elif request.method == 'GET' and 'id' in request.args: # for easy test
         id = request.args['id']
+    
+    flash('prrr... ' + words)
 
     if id is None:
         return "nothing subsmithed"
-    else:            
+    else:    
+        return redirect(url_for('createquestion'))
+        
         # return 'form subsmithed, you can collect your .lsq with id: ' + id + 'file on '
         r = make_response(render_template("limesurvey_choosewords.lsq", id=id, dictOfWords=jason))
         r.headers.set('Content-Type', 'text/xml; charset=utf-8')
@@ -67,9 +78,17 @@ def subsmith():
         # return render_template("limesurvey_choosewords.lsq", id=id)
         return r
 
+ 
+    return redirect(url_for('uploadwordlist'))
 
-@app.route('/processwordlist/',  methods = ['POST'])
-def processwordlist():
+@app.route('/upload/',  methods = ['GET'])
+def upload():
+    return render_template("upload.html", a=1)
+
+ 
+
+@app.route('/processupload/',  methods = ['POST'])
+def processupload():
     # app.logger.info(request.files) 
   
     uploaded_file = request.files['file']
@@ -82,11 +101,10 @@ def processwordlist():
         uploaded_file.save(safename)
         flash(uploaded_file.filename + ' succesfull stored')
 
-    return redirect(url_for('uploadwordlist'))
+    return redirect(url_for('upload'))
 
-@app.route('/createquestion/')
-def createquestion():
-    return render_template("audioquestion.html", a=1)
+
+
 
 @app.route('/getphrases/')
 def getphrases():

@@ -1,5 +1,9 @@
 # Changelog
 
+## 30-6-2021
+
+- added some info from spaq into this
+
 ## 2-6-2021
 
 Change to Docker Flask development
