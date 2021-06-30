@@ -3,6 +3,9 @@
 ## 30-6-2021
 
 - added some info from spaq into this
+- added juptyer book for making requests to flask
+- added learn dir
+- added foxy foxtrot
 
 ## 2-6-2021
 

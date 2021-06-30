@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 app.config['UPLOAD_FOLDER'] = './static/uploads/'
-app.secret_key = 'secreet'
+app.secret_key = 'secreet' # for flash() session
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 # max: 1MB, 10s ogg = 125MB, mp4 = 233MB, webm = 48MB
 
 
@@ -24,13 +24,24 @@ def index(name=None):
     return render_template("index.html", name=name )
     # return jsonpersoon
 
+
+
+@app.route('/data', methods=['GET']) # need the method if immediately after unslashed route
+def data():
+    # here we want to get the value of user (i.e. ?user=some-value)
+    name = request.args.get('name')
+    return name
+    # print(user)
+
 @app.route('/endpoint/') # trailing slash is essential
 def endpoint():
     status = "OK"
     bashcmd = "fmpeg converted"
     returnvalue = 0
     returnvalues = [{"storestatus" : status}, {"mp4conv" : {"bashcmd" : bashcmd, "return" : returnvalue}}]
-    return json.dumps(returnvalues)
+    return json.dumps(returnvalues), {'Content-Type': 'Application/json; charset=utf-8'}
+
+    # return json.dumps(returnvalues)
 
 @app.route('/createquestion/')
 def createquestion():
