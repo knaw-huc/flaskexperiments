@@ -29,9 +29,14 @@ for index in range(len(dict)):
     r = requests.put(unique_endpoint,data = json.dumps(dicdata), headers=headers)
 
 
-# test is the latest Dumb ways to die
 
-response = requests.get(unique_endpoint);
+''' show all records '''
+
+response = requests.get("http://localhost:9200/favouritesongs/nummer/_search");
 # response.json() obtain a dictionary
 json_formatted_str = json.dumps(response.json(), indent=4)
 print(json_formatted_str)
+
+'''
+Or with curl: curl http://localhost:9200/favouritesongs/nummer/_search?pretty
+'''
