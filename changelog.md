@@ -1,5 +1,11 @@
 # Changelog
 
+## 1-7-2021
+
+- added elasticSearch from Python
+- dictionary -> json -> dictionary
+- requests module is the curl of python
+
 ## 30-6-2021
 
 - added some info from spaq into this
