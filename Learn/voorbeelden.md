@@ -45,6 +45,8 @@ curl  'http://localhost:9200/luistersessies/nummer/_search?q=arties=vic'
 De single quote in "Don't" verreist nogal een belachelijke manier van escapen, in de shell, om het in Elastic Search te krijgen.
 https://stackoverflow.com/questions/32122586/curl-escape-single-quote
 
+Bij python vind er een automatische escape plaats bij een requests.put()
+
 Zoeken naar Du werkt niet... Per woord geindexeeerd?
 
 Is die herhaling wenselijk bij noSQL? Elke nummer is een 'document' luistersessie info. Of is een hele luistersessie document.

@@ -28,5 +28,15 @@
         "inbrenger": "mp",
         "volgnummer": 11,
         "url": "https://www.youtube.com/watch?v=IJNR2EpS0jw"
-    }
+    },
+    {
+        "id": 6,
+        "artiest" : ["Vic Fontaine", "James Darren"],
+        "nummer" : "It's only a paper moon",
+        "opmerking" : ["recursief escapisme", "DS9 S07E10"],
+        "inbrenger" : "mp",
+        "volgnummer": 6,
+        "url": "https://www.youtube.com/watch?v=Z1NGRnVpCSQ"
+    }    
+
 ]
